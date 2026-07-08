@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 14% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 15%;
+    --primary: 203 84% 27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 34 43% 60%;
+    --secondary-foreground: 220 14% 15%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 14% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 203 84% 27%;
+    --radius: 0.625rem;
+    
+    /* Custom colors */
+    --color-primary: #0B4F7A;
+    --color-secondary: #C89B6D;
+    --color-cta-green: #25D366;
+    --color-bg: #FAF9F6;
+    --color-bg-alt: #F4F6F8;
+    --color-bg-white: #FFFFFF;
+    --color-text: #1F2937;
+    --color-text-muted: #6B7280;
+    --color-text-light: #9CA3AF;
+    --color-success: #22C55E;
+    --color-danger: #EF4444;
+    --color-warning: #FBBF24;
+    --color-border: #E5E7EB;
+    --color-footer: #1F2937;
+    
+    /* Shadows */
+    --shadow-soft: 0 8px 32px rgba(11, 79, 122, 0.08);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+    --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.12);
+    --shadow-sticky: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-nav: 0 2px 20px rgba(0, 0, 0, 0.08);
+    --glow-green: 0 0 20px rgba(37, 211, 102, 0.3);
+  }
+
+
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    direction: rtl;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+
+/* Fade Up - Scroll Reveal */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Stagger Children */
+@keyframes staggerFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse Ring for Phone */
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Slide Up for Sticky Bar */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Hero Entrance */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chevron Rotate */
+@keyframes chevronRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-pulse-ring {
+  animation: pulseRing 2s infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Hero stagger delays */
+.hero-title { animation-delay: 0.2s; }
+.hero-subtitle { animation-delay: 0.4s; }
+.hero-badge-1 { animation-delay: 0.6s; }
+.hero-badge-2 { animation-delay: 0.7s; }
+.hero-badge-3 { animation-delay: 0.8s; }
+.hero-badge-4 { animation-delay: 0.9s; }
+.hero-buttons { animation-delay: 1.0s; }
+
+/* Scroll Reveal - Initial State */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children reveal */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.5s; }
+
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  transition: transform 0.6s ease-out;
+}
+
+.group:hover .img-zoom {
+  transform: scale(1.05);
+}
+
+/* Button hover */
+.btn-hover {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.btn-hover:hover {
+  transform: scale(1.03);
+}
+
+.btn-hover:active {
+  transform: translateY(2px);
+}
+
+/* WhatsApp glow */
+.whatsapp-btn {
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.whatsapp-btn:hover {
+  box-shadow: var(--glow-green);
+  transform: scale(1.03);
+}
+
+/* Icon hover - Why Choose Us */
+.icon-hover {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.group:hover .icon-hover {
+  transform: scale(1.1);
+  color: var(--color-secondary);
+}
+
+/* Navigation transition */
+.nav-transition {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+/* FAQ Accordion */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.open {
+  max-height: 300px;
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease;
+}
+
+.faq-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Carousel dots */
+.carousel-dot {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot.active {
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* Process line animation */
+.process-line {
+  transition: background-color 0.5s ease;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0a3d5f;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Safe area for iPhone */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
