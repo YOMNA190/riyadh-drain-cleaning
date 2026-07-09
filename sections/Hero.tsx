@@ -95,7 +95,7 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0"
             style={{
               animation: 'heroFadeUp 0.8s ease-out 1.0s forwards',
             }}
@@ -103,27 +103,33 @@ export default function Hero() {
             <a
               href="tel:+966550460377"
               data-event="phone_call"
-              className="flex items-center gap-2 bg-primary text-white rounded-full px-6 py-3 font-medium btn-hover shadow-soft"
+              className="flex items-center gap-3 bg-secondary text-white rounded-full px-8 py-4 font-bold text-lg btn-hover shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/30"
               aria-label="اتصل بنا على 0550460377"
               onClick={() => trackPhoneCall()}
             >
               <span className="relative">
-                <Phone className="w-5 h-5" />
-                <span className="absolute inset-0 rounded-full bg-secondary animate-pulse-ring" />
+                <Phone className="w-6 h-6" />
+                <span className="absolute inset-0 rounded-full bg-white/40 animate-pulse-ring" />
               </span>
-              اتصل الآن
+              <span className="flex flex-col items-start">
+                <span className="text-xs font-medium opacity-90">اتصل الآن</span>
+                <span className="text-sm font-bold">0550460377</span>
+              </span>
             </a>
             <a
               href="https://wa.me/966550460377"
               target="_blank"
               rel="noopener noreferrer"
               data-event="whatsapp_click"
-              className="flex items-center gap-2 bg-cta-green text-white rounded-full px-6 py-3 font-medium whatsapp-btn"
+              className="flex items-center gap-3 bg-cta-green text-white rounded-full px-8 py-4 font-bold text-lg whatsapp-btn shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/30"
               aria-label="تواصل معنا عبر واتساب"
               onClick={() => trackContact()}
             >
-              <MessageCircle className="w-5 h-5" />
-              واتساب
+              <MessageCircle className="w-6 h-6" />
+              <span className="flex flex-col items-start">
+                <span className="text-xs font-medium opacity-90">تواصل عبر</span>
+                <span className="text-sm font-bold">واتساب</span>
+              </span>
             </a>
           </div>
         </div>

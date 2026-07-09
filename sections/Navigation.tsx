@@ -57,14 +57,14 @@ export default function Navigation() {
             <a
               href="tel:+966550460377"
               data-event="phone_call"
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all btn-hover ${
+              className={`flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all btn-hover border-2 shadow-lg hover:shadow-xl hover:scale-105 ${
                 scrolled
-                  ? 'bg-primary text-white'
-                  : 'bg-white text-primary'
+                  ? 'bg-secondary text-white border-secondary/50'
+                  : 'bg-white text-secondary border-white/50'
               }`}
               onClick={() => trackPhoneCall()}
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-5 h-5" />
               اتصل الآن
             </a>
           </div>
@@ -101,13 +101,13 @@ export default function Navigation() {
             <a
               href="tel:+966550460377"
               data-event="phone_call"
-              className="flex items-center justify-center gap-2 bg-primary text-white rounded-full px-4 py-3 text-sm font-medium w-full"
+              className="flex items-center justify-center gap-2 bg-secondary text-white rounded-full px-6 py-4 text-base font-bold w-full shadow-lg hover:shadow-xl active:scale-95 transition-all border-2 border-secondary/50"
               onClick={() => {
                 setMenuOpen(false);
                 trackPhoneCall();
               }}
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-5 h-5" />
               اتصل الآن
             </a>
           </div>
