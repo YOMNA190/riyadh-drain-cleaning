@@ -15,37 +15,74 @@ export default function StickyBar() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden safe-area-bottom animate-slide-up">
-      <div className="bg-primary rounded-t-2xl shadow-sticky px-4 py-3 flex items-center gap-3">
-        {/* Phone Button */}
+    <>
+      {/* Mobile Sticky Bar - Visible only on mobile */}
+      <div className="fixed bottom-0 left-0 right-0 z-[60] md:hidden safe-area-bottom animate-slide-up">
+        <div className="bg-white/95 backdrop-blur-md border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.1)] px-4 py-3 flex items-center gap-3">
+          {/* Phone Button */}
+          <a
+            href="tel:+966550460377"
+            data-event="phone_call"
+            className="flex-1 flex items-center justify-center gap-2 bg-primary text-white rounded-xl py-4 font-bold text-base shadow-lg active:scale-95 transition-all relative overflow-hidden"
+            aria-label="اتصل الآن"
+            onClick={() => trackPhoneCall()}
+          >
+            <span className="relative">
+              <Phone className="w-5 h-5" />
+              <span className="absolute inset-0 rounded-full bg-white/20 animate-pulse-ring" />
+            </span>
+            اتصل الآن
+          </a>
+
+          {/* WhatsApp Button */}
+          <a
+            href="https://wa.me/966550460377"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-event="whatsapp_click"
+            className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white rounded-xl py-4 font-bold text-base shadow-lg active:scale-95 transition-all"
+            aria-label="واتساب"
+            onClick={() => trackContact()}
+          >
+            <MessageCircle className="w-5 h-5" />
+            واتساب
+          </a>
+        </div>
+      </div>
+
+      {/* Desktop Floating Buttons - Visible only on desktop */}
+      <div className="hidden md:flex fixed bottom-8 left-8 z-[60] flex-col gap-4 animate-slide-up">
+        {/* Desktop Phone */}
         <a
           href="tel:+966550460377"
-          data-event="phone_call"
-          className="flex-1 flex items-center justify-center gap-2 bg-white/10 text-white rounded-xl py-3 font-bold text-sm hover:bg-white/20 transition-colors relative overflow-hidden"
-          aria-label="اتصل الآن"
+          className="group flex items-center gap-3 bg-primary text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-primary/90 transition-all duration-300"
           onClick={() => trackPhoneCall()}
+          title="اتصل بنا"
         >
-          <span className="relative">
-            <Phone className="w-5 h-5" />
-            <span className="absolute inset-0 rounded-full bg-secondary/50 animate-pulse-ring" />
+          <div className="relative">
+            <Phone className="w-6 h-6" />
+            <span className="absolute inset-0 rounded-full bg-white/30 animate-pulse-ring" />
+          </div>
+          <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 font-bold whitespace-nowrap">
+            0550460377
           </span>
-          <span className="tabular-nums" dir="ltr">0550460377</span>
         </a>
 
-        {/* WhatsApp Button */}
+        {/* Desktop WhatsApp */}
         <a
           href="https://wa.me/966550460377"
           target="_blank"
           rel="noopener noreferrer"
-          data-event="whatsapp_click"
-          className="flex-1 flex items-center justify-center gap-2 bg-cta-green text-white rounded-xl py-3 font-bold text-sm hover:bg-cta-green-hover transition-colors"
-          aria-label="واتساب"
+          className="group flex items-center gap-3 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-[#20bd5a] transition-all duration-300"
           onClick={() => trackContact()}
+          title="تواصل عبر واتساب"
         >
-          <MessageCircle className="w-5 h-5" />
-          واتساب
+          <MessageCircle className="w-6 h-6" />
+          <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 font-bold whitespace-nowrap">
+            واتساب فوري
+          </span>
         </a>
       </div>
-    </div>
+    </>
   );
 }
